@@ -1,5 +1,5 @@
 {
-  "name": "instagram.js",
+  "name": "@joon102/instagram.js",
   "version": "0.0.0",
   "description": "instagram automation library",
   "main": "dist/index.js",
