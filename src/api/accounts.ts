@@ -16,4 +16,6 @@ export const login = async (browser: Browser, loginUrl: string, id: string, pass
     await page.fill(passwordInputSelector, password);
 
     await page.keyboard.press("Enter");
+
+    await page.close()
 };
