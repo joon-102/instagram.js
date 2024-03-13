@@ -1,7 +1,8 @@
-import { Browser, Page } from 'playwright';
+import { Page, BrowserContext } from 'playwright';
+import { setTimeout } from 'node:timers/promises';
 
-export const login = async (browser: Browser, loginUrl: string, id: string, password: string): Promise<void> => {
-    const page: Page = await browser.newPage();
+export const login = async (context: BrowserContext, loginUrl: string, id: string, password: string): Promise<void> => {
+    const page: Page = await context.newPage();
 
     await page.goto(loginUrl);
 
@@ -16,6 +17,20 @@ export const login = async (browser: Browser, loginUrl: string, id: string, pass
     await page.fill(passwordInputSelector, password);
 
     await page.keyboard.press("Enter");
+};
 
+
+export const islogin = async (context: BrowserContext, isloginUrl: string): Promise<boolean> => {
+    const page: Page = await context.newPage();
+    await page.goto(isloginUrl);
+
+    await setTimeout(1000);
+
+    const url: String = page.url()
     await page.close()
+
+    if (url.includes("login")) {
+        return false
+    }
+    return true
 };
